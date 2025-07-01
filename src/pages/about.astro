@@ -1,0 +1,115 @@
+---
+import { getEntry, render } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+import Prose from "@components/common/Prose.astro";
+
+import PageTitle from "../components/common/PageTitle.astro";
+
+// Import image from src/assets
+import bgImage from "../assets/pstls-assets/images/blog-content/shadow-pink.png";
+
+//import { Vimeo } from '@astro-community/astro-embed-vimeo';
+
+// Get about page content from CMS
+const aboutContent = await getEntry("pages", "about");
+
+if (!aboutContent) {
+  throw new Error("About page content not found");
+}
+
+const { Content } = await render(aboutContent);
+
+const pageTitle = aboutContent.data.title;
+const pageDescription = aboutContent.data.description;
+const pageImage = typeof aboutContent.data.image === 'string' ? aboutContent.data.image : aboutContent.data.image?.src || aboutContent.data.pageImage;
+const preloadedImage =  (typeof aboutContent.data.image === 'object' ? aboutContent.data.image : undefined);
+const pageType = aboutContent.data.pageType || "website";
+
+---
+
+<Layout title={pageTitle} description={pageDescription} image={pageImage} preloadedImage={preloadedImage} type={pageType}>
+  <!-- <AboutSectionBlogContent4 /> -->
+
+  <section
+    class="pb-24"
+    style={`background-image: url(${bgImage.src}); background-repeat: no-repeat; background-size: cover;`}
+  >
+    <div class="container max-w-6xl px-4 mx-auto">
+      <PageTitle pageTitle={pageTitle} breadcrumbTitle="Home" />
+
+      <!-- Video Embed -->
+      <div class="relative mx-auto aspect-video mb-12 w-full max-w-4xl">
+        <!-- Use aspect-ratio for responsive iframe -->
+        <iframe
+          class="absolute inset-0 w-full h-full rounded-md"
+          src="https://player.vimeo.com/video/9214023?muted=1&autoplay=1&loop=1&app_id=122963"
+          allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+          title="Connection at Indianapolis Airport by Electroland"
+          loading="eager"></iframe>
+      <!--    <Vimeo
+            id="9214023"
+            posterQuality='high'
+            params="muted=1&autoplay=1&loop=1#t=10s"
+            class="absolute inset-0 w-full h-auto rounded-md aspect-video"
+            title="Connection at Indianapolis Airport by Electroland"
+          />
+          -->
+      </div>
+      <div class="flex flex-wrap -mx-4">
+        <!-- Main Content -->
+        <div class="w-full lg:w-2/3 px-4 mb-12 lg:mb-0">
+          <!-- CMS Content Section -->
+          <Prose>
+            <Content />
+          </Prose>
+        </div>
+        <!-- End Main Content -->
+
+        <!-- Newsletter Sidebar -->
+        <div class="w-full lg:w-1/3 px-4">
+          <form
+            name="newsletter"
+            method="POST"
+            data-netlify="true"
+            data-netlify-honeypot="bot-field"
+            data-netlify-recaptcha="true"
+            action="/thank-you/"
+            class="py-10 px-6 md:px-8 bg-white shadow-lg text-center rounded-md"
+          >
+            <input type="hidden" name="form-name" value="newsletter" />
+            <p class="hidden">
+              <label>
+                Don't fill this out if you're human: <input name="bot-field" />
+              </label>
+            </p>
+            <h2
+              class="text-2xl md:text-3xl font-heading mb-4 text-darkgray-primary"
+            >
+              Sign Up For Our Newsletter
+            </h2>
+            <p class="leading-7 mb-6 text-gray-600">
+              Subscribe to stay updated on the latest developments and newest
+              products!
+            </p>
+            <label for="newsletter-email" class="sr-only">Email address:</label>
+            <input
+              id="newsletter-email"
+              class="block mb-4 w-full py-3 px-4 bg-gray-100 placeholder-gray-500 border rounded outline-none focus:ring-2 focus:ring-red-300"
+              type="email"
+              name="email"
+              placeholder="Enter your email address"
+              required
+            />
+            <button
+              class="block w-full py-3 px-4 text-center text-white font-bold bg-red-700 hover:bg-red-800 transition duration-200 rounded-md"
+              type="submit"
+            >
+              Subscribe
+            </button>
+          </form>
+        </div>
+        <!-- End Sidebar -->
+      </div>
+    </div>
+  </section>
+</Layout>

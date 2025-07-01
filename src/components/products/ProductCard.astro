@@ -1,0 +1,33 @@
+---
+import { Image } from "astro:assets";
+
+
+
+const { title, description, image, slug, pageType } = Astro.props;
+---
+
+
+      <a
+        href={slug}
+        class="border rounded-lg overflow-hidden shadow-md hover:shadow-xl transition duration-300 hover:scale-105 flex flex-col"
+      >
+        <Image
+          src={image}
+          alt={title}
+          class="block w-full h-48 object-cover"
+          width={400}
+          height={300}
+          loading="lazy"
+          decoding="async"
+          inferSize={true}
+        />
+        <div class="p-6 flex flex-col flex-grow">
+          <h5 class="mb-2 text-xl font-heading text-darkgray-primary">
+            {title}
+          </h5>
+          <p class="mb-4 text-darkgray-primary flex-grow text-pretty">{description}</p>
+          <button class="inline-block w-full md:w-auto py-3 px-8 text-center font-bold text-darkgray-primary uppercase rounded border border-gray-300 hover:bg-gray-100 transition duration-300 mt-4 tracking-wider">
+            Learn More
+          </button>
+        </div>
+      </a>

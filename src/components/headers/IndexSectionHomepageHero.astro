@@ -1,0 +1,89 @@
+---
+import { Image } from 'astro:assets';
+
+// Import images from src/assets
+import gazeboImg from '../../assets/images/gazebo-homepage-hero.webp';
+import houseOutsideImg from '../../assets/images/house-outside-homepage-hero.jpg';
+import solarNightLightImg from '../../assets/images/solar-night-light-homepage-hero.jpg';
+import barImg from '../../assets/images/bar-homepage-hero.jpg';
+
+// Define props if needed (none in this example)
+// export interface Props {}
+// const {} = Astro.props;
+---
+
+<section class="bg-black relative pb-16 pt-24 lg:pt-36">
+  <div class="container px-4 mx-auto mt-12 relative max-w-6xl">
+    <div class="flex flex-wrap">
+      <div class="w-full lg:w-1/2 px-4">
+        <div class="lg:pt-6 max-w-md">
+          <h1 class="text-5xl lg:text-6xl font-heading mb-6 text-white">
+            LED Lighting
+            <span class="text-red-700">Solutions.</span>
+          </h1>
+          <p class="leading-8 mb-6 text-gray-400 text-pretty ">
+            Transform your space with cutting-edge LED lighting that's brighter,
+            smarter, and built to last. LEDPac delivers innovation and
+            sustainability in every design, helping you shine while saving energy.
+          </p>
+          <a
+            class="inline-block w-full md:w-auto text-center px-8 py-3 text-white font-bold bg-red-700 rounded-md"
+            href="/contact"
+          >
+            Get An Estimate
+          </a>
+        </div>
+      </div>
+      <div class="w-full lg:w-1/2 mt-20 lg:mt-0">
+        <div class="flex justify-center lg:justify-end">
+          <div class="mr-4 lg:mr-8">
+            <Image
+              class="block mx-auto mb-8 rounded-md"
+              src={gazeboImg}
+              alt="Gazebo structure illuminated with LED lighting strips"
+              width={gazeboImg.width}
+              height={gazeboImg.height}
+              format="webp"
+              loading="eager"
+              decoding="async"
+            />
+            <Image
+              class="block mx-auto mb-8 rounded-md"
+              src={houseOutsideImg}
+              alt="Exterior of a modern house with landscape LED lighting"
+              width={houseOutsideImg.width}
+              height={houseOutsideImg.height}
+              format="webp"
+              loading="eager"
+              decoding="async"
+            />
+            <div class="hidden xl:block bg-black w-64 h-12"></div>
+          </div>
+          <div>
+            <Image
+              class="block mx-auto mb-8 rounded-md"
+              src={solarNightLightImg}
+              alt="Solar-powered LED night light stake in a garden"
+              width={solarNightLightImg.width}
+              height={solarNightLightImg.height}
+              format="webp"
+              loading="eager"
+              decoding="async"
+            />
+            <Image
+              class="block mx-auto mb-8 rounded-md"
+              src={barImg}
+              alt="Bar area illuminated with ambient LED strip lighting"
+              width={barImg.width}
+              height={barImg.height}
+              format="webp"
+              loading="eager"
+              decoding="async"
+            />
+            <div class="hidden xl:block bg-black w-64 h-12"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

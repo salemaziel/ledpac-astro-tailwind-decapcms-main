@@ -1,0 +1,668 @@
+---
+import { getEntry } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import { Image } from "astro:assets";
+//import Button from '@/components/common/Button.astro';
+import FeatureCard from "../components/IndexFeatureCard.astro";
+import SolutionsCard from "../components/IndexSolutionsCard.astro";
+//import Prose from '@/components/common/Prose.astro';
+
+// Hero Images
+import gazeboImg from "../assets/images/gazebo-homepage-hero-sm.webp";
+import houseOutsideImg from "../assets/images/house-outside-homepage-hero-sm.jpg";
+import solarNightLightImg from "../assets/images/solar-night-light-homepage-hero-sm.jpg";
+import barImg from "../assets/images/bar-homepage-hero-sm.jpg";
+
+// Feature Images (fallback if CMS images are not available)
+import solarLedImg from "../assets/images/solar-night-light.jpg";
+import spiderCobImg from "../assets/images/spider-cob-led-growlights-png-1744334845303.webp";
+import nanoliteCobImg from "../assets/images/nanolite-cob-led-lights.png";
+
+// Solutions Images (fallback if CMS images are not available)
+import banner1Img from "../assets/images/banner1.png";
+import banner2Img from "../assets/images/banner2.png";
+import banner3Img from "../assets/images/banner3.png";
+import banner4Img from "../assets/images/banner4.png";
+import banner5Img from "../assets/images/banner5.png";
+import banner6Img from "../assets/images/banner6.png";
+
+// Get home page content from CMS
+const homeContent = await getEntry("pages", "home");
+
+if (!homeContent) {
+  throw new Error("Home page content not found");
+}
+
+
+// Log the complete CMS data structure
+console.log("🔍 Full CMS Data:", JSON.stringify(homeContent.data, null, 2));
+
+
+const pageTitle = homeContent.data.title;
+const pageDescription = homeContent.data.description;
+const pageImage =
+  typeof homeContent.data.image === "string"
+    ? homeContent.data.image
+    : homeContent.data.image?.src || homeContent.data.pageImage;
+const preloadedImage =
+  typeof homeContent.data.image === "object"
+    ? homeContent.data.image
+    : undefined;
+const pageType = homeContent.data.pageType || "website";
+
+const heroSection = homeContent.data.heroSection;
+const featuresSection = homeContent.data.featuresSection;
+const solutionsSection = homeContent.data.solutionsSection;
+
+// Log Hero Section Data
+console.log("🦸 Hero Section:");
+console.log("  Title:", heroSection?.["hero-h1-title"] ? "✅ CMS" : "❌ FALLBACK");
+console.log("  Subtitle:", heroSection?.["hero-subtitle"] ? "✅ CMS" : "❌ FALLBACK");
+console.log("  Button Enabled:", heroSection?.enableButton ? "✅ CMS Enabled" : "❌ CMS Disabled/Fallback");
+console.log("  Button Text:", heroSection?.buttonText ? "✅ CMS" : "❌ FALLBACK");
+console.log("  Button URL:", heroSection?.buttonUrl ? "✅ CMS" : "❌ FALLBACK");
+console.log("  Hero Images:", {
+  image1: heroSection?.["hero-image-1"] ? "✅ CMS" : "❌ FALLBACK",
+  image2: heroSection?.["hero-image-2"] ? "✅ CMS" : "❌ FALLBACK", 
+  image3: heroSection?.["hero-image-3"] ? "✅ CMS" : "❌ FALLBACK",
+  image4: heroSection?.["hero-image-4"] ? "✅ CMS" : "❌ FALLBACK"
+});
+
+
+
+// Create fallback feature cards if CMS data is not available
+const fallbackFeatureCards = [
+  {
+    title: "Solar Powered LED",
+    description:
+      "High Powered solar LED illumination breakthrough with bright reliable adjustable illumination, powered by the sun. Lighting the darkness through the night using super-efficient white LEDs.",
+    image: solarLedImg,
+    imageAlt: "Solar Powered LED Lights illuminating a pathway",
+    buttonText: "Explore Solar LEDs",
+    buttonUrl: "/products/solar-led",
+    reverseLayout: false,
+  },
+  {
+    title: "Industrial LED Grow Lights",
+    description:
+      "Industrial LED Grow light systems, allowing the best color spectrum closest to the sun. Plants grow stronger faster night and day indoors.",
+    image: spiderCobImg,
+    imageAlt: "Spider COB LED Grow Lights system over plants",
+    buttonText: "Explore Industrial LED Growlights",
+    buttonUrl: "/products/rgb-led",
+    reverseLayout: true,
+  },
+  {
+    title: "NANOlite COB LED Lights",
+    description:
+      "COB Innovation in linear LED lighting, NANOlite. Continuous, bright, reliable LED illumination through entire product. Pure white or warm white with continuous illumination LED technology.",
+    image: nanoliteCobImg,
+    imageAlt:
+      "Close-up of NANOlite COB LED light strip showing continuous illumination",
+    buttonText: "Explore NANOlite COB LEDs",
+    buttonUrl: "/products/nanolite-cob-led",
+    reverseLayout: false,
+  },
+];
+
+const featureCards = featuresSection?.featureCards || fallbackFeatureCards;
+
+// Log Features Section Data
+console.log("🎯 Features Section:");
+console.log("  Header Title:", featuresSection?.["content-h2-title"] ? "✅ CMS" : "❌ FALLBACK");
+console.log("  Paragraph:", featuresSection?.["content-features-paragraph"] ? "✅ CMS" : "❌ FALLBACK");
+console.log("  Feature Cards:", featuresSection?.featureCards ? `✅ CMS (${featuresSection.featureCards.length} cards)` : `❌ FALLBACK (${fallbackFeatureCards.length} cards)`);
+
+if (featuresSection?.featureCards) {
+  featuresSection.featureCards.forEach((card: any, index: number) => {
+    console.log(`    Card ${index + 1}:`, {
+      title: card.title ? "✅ CMS" : "❌ Missing",
+      description: card.description ? "✅ CMS" : "❌ Missing",
+      image: card.image ? "✅ CMS" : "❌ Missing",
+      buttonText: card.buttonText ? "✅ CMS" : "❌ Missing",
+      buttonUrl: card.buttonUrl ? "✅ CMS" : "❌ Missing"
+    });
+  });
+}
+
+
+
+// Log final decision
+console.log("🎯 Final Feature Cards Source:", featuresSection?.featureCards ? "CMS DATA" : "FALLBACK DATA");
+
+
+// Create fallback solutions cards if CMS data is not available
+const fallbackSolutionsCards = [
+  {
+    title: "Motion Sensor LED Lighting",
+    description:
+      "SMART RB LEDS attached to motion sensors inside custom fixtures that follow your moment fast or slow changing colors at the same time. This technology is one of our staple systems, allowing many technical options for many future availability's.",
+    image: banner1Img,
+    imageAlt: "Abstract image representing Motion Sensor LED Lighting",
+  },
+  {
+    title: "Premium LED Landscape Solution",
+    description:
+      "Elegant outdoor lighting solutions that enhance your landscape, providing 70% savings on electricity compared to traditional systems.",
+    image: banner2Img,
+    imageAlt: "Abstract image representing Premium LED Landscape Solutions",
+  },
+  {
+    title: "LED Illumination Projects",
+    description:
+      "LEDpac's RETROfit solutions for both low and high ceiling downlighting designed for entryways, hallways, stairwells, kitchens, home movie theatres, studios, game rooms and more.",
+    image: banner3Img,
+    imageAlt: "Abstract image representing LED Illumination Projects",
+  },
+  {
+    title: "NanoLite C.O.B. Indoor LED Lighting",
+    description:
+      "Chip-on-Board LEDs, also known as COBs, are the next and newest generation of LED technology for indoor lighting.",
+    image: banner4Img,
+    imageAlt: "Abstract image representing NanoLite C.O.B. Indoor LED Lighting",
+  },
+  {
+    title: "Exterior Outdoor LED Lighting",
+    description:
+      "Premium low-voltage high-lumen LED solutions for submersible and above grade outdoor landscape applications such as fountains, ponds, reflecting pools, outdoor step-lighting, patio bar counters, exterior architectural features and more.",
+    image: banner5Img,
+    imageAlt: "Abstract image representing Exterior Outdoor LED Lighting",
+  },
+  {
+    title: "Interior LED Illumination",
+    description:
+      "LEDpac's Linear and Flexible solutions give premium long-living light to architectural features, soffits, step lighting, bar counters, built-in cabinetry, and more.",
+    image: banner6Img,
+    imageAlt: "Abstract image representing Interior LED Illumination",
+  },
+];
+
+const solutionsCards =
+  solutionsSection?.solutionsCards || fallbackSolutionsCards;
+
+// Log Solutions Section Data
+console.log("💡 Solutions Section:");
+console.log("  Header Title:", solutionsSection?.["solutions-h3-title"] ? "✅ CMS" : "❌ FALLBACK");
+console.log("  Paragraph:", solutionsSection?.["solutions-paragraph"] ? "✅ CMS" : "❌ FALLBACK");
+console.log("  Solutions Cards:", solutionsSection?.solutionsCards ? `✅ CMS (${solutionsSection.solutionsCards.length} cards)` : `❌ FALLBACK (${fallbackSolutionsCards.length} cards)`);
+
+if (solutionsSection?.solutionsCards) {
+  solutionsSection.solutionsCards.forEach((item: any, index: number) => {
+    console.log(`    Solution ${index + 1}:`, {
+      title: item.title ? "✅ CMS" : "❌ Missing",
+      description: item.description ? "✅ CMS" : "❌ Missing",
+      image: item.image ? "✅ CMS" : "❌ Missing",
+      imageAlt: item.imageAlt ? "✅ CMS" : "❌ Missing"
+    });
+  });
+}
+
+
+// Log final decision
+console.log("💡 Final Solutions Cards Source:", solutionsSection?.solutionsCards ? "CMS DATA" : "FALLBACK DATA");
+
+
+---
+
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+  image={pageImage}
+  preloadedImage={preloadedImage}
+  type={pageType}
+>
+  <!-- Hero section -->
+  <section class="bg-black overflow-hidden relative pb-16 lg:pt-10">
+    <div class="container px-4 mx-auto mt-12 lg:max-w-6xl">
+      <div class="flex flex-wrap">
+        <div class="w-full lg:w-1/2 px-4">
+          <div class="lg:pt-6 max-w-md">
+            <h1
+              class="text-5xl lg:text-6xl font-heading mb-6 text-white font-semibold"
+            >
+            {
+            (() => {
+                const heroTitle = heroSection?.["hero-h1-title"];
+                  console.log("🏷️ Rendering Hero Title:", heroTitle ? "CMS DATA" : "FALLBACK");
+                  return heroTitle || (
+                  <>
+                    LED Lighting
+                    <span class="text-red-700">Solutions.</span>
+                  </>
+                );
+              })()
+            }
+            </h1>
+            <p class="leading-8 mb-6 text-gray-400 text-pretty">
+              {
+                (() => {
+                  const heroSubtitle = heroSection?.["hero-subtitle"];
+                  console.log("🏷️ Rendering Hero Subtitle:", heroSubtitle ? "CMS DATA" : "FALLBACK");
+                  return heroSubtitle || (
+                    "Transform your space with cutting-edge LED lighting that's brighter, smarter, and built to last. LEDPac delivers innovation and sustainability in every design, helping you shine while saving energy."
+                  );
+                })()
+              }
+            </p>
+            {
+              heroSection?.enableButton && (
+                <a
+                  class="inline-block w-full md:w-auto text-center px-8 py-3 text-white font-bold bg-red-700 rounded-md"
+                  href={heroSection?.buttonUrl || "/products/#product-form"}
+                >
+                  {heroSection?.buttonText || "Get An Estimate"}
+                </a>
+              )
+            }
+          </div>
+        </div>
+        <div class="w-full lg:w-1/2 mt-20 lg:mt-0">
+          <div class="flex justify-center lg:justify-end">
+            <div class="mr-4 lg:mr-8">
+              {
+                heroSection?.["hero-image-1"] ? (
+                  <Image
+                    class="block mx-auto mb-8 rounded-md"
+                    src={heroSection["hero-image-1"] || `${gazeboImg}`}
+                    alt="Gazebo structure illuminated with LED lighting strips"
+                    width={gazeboImg.width}
+                    height={gazeboImg.height}
+                    format="webp"
+                    loading="eager"
+                    decoding="async"
+                  />
+                )
+                : 
+                (
+                  <Image
+                    class="block mx-auto mb-8 rounded-md"
+                    src={gazeboImg}
+                    alt="Gazebo structure illuminated with LED lighting strips"
+                    width={gazeboImg.width}
+                    height={gazeboImg.height}
+                    format="webp"
+                    loading="eager"
+                    decoding="async"
+                  />
+                )
+              }
+              {
+                heroSection?.["hero-image-2"] ? (
+                  <Image
+                    class="block mx-auto mb-8 rounded-md"
+                    src={heroSection["hero-image-2"] || `${houseOutsideImg}`}
+                    alt="Exterior of a modern house with landscape LED lighting"
+                    width={houseOutsideImg.width}
+                    height={houseOutsideImg.height}
+                    format="webp"
+                    loading="eager"
+                    decoding="async"
+                  />
+                )
+                : 
+                (
+                  <Image
+                    class="block mx-auto mb-8 rounded-md"
+                    src={houseOutsideImg}
+                    alt="Exterior of a modern house with landscape LED lighting"
+                    width={houseOutsideImg.width}
+                    height={houseOutsideImg.height}
+                    format="webp"
+                    loading="eager"
+                    decoding="async"
+                  />
+                )
+              }
+
+              <!--  
+            <Image
+              class="block mx-auto mb-8 rounded-md"
+              src={gazeboImg}
+              alt="Gazebo structure illuminated with LED lighting strips"
+              width={gazeboImg.width}
+              height={gazeboImg.height}
+              format="webp"
+              loading="eager"
+              decoding="async"
+            />
+            <Image
+              class="block mx-auto mb-8 rounded-md"
+              src={houseOutsideImg}
+              alt="Exterior of a modern house with landscape LED lighting"
+              width={houseOutsideImg.width}
+              height={houseOutsideImg.height}
+              format="webp"
+              loading="eager"
+              decoding="async"
+            /> 
+          -->
+              <div class="hidden xl:block bg-black w-64 h-12"></div>
+            </div>
+            <div>
+              {
+                heroSection?.["hero-image-3"] ? (
+                  <Image
+                    class="block mx-auto mb-8 rounded-md"
+                    src={heroSection["hero-image-3"] || `${solarNightLightImg}`}
+                    alt="Solar-powered LED night light stake in a garden"
+                    width={solarNightLightImg.width}
+                    height={solarNightLightImg.height}
+                    format="webp"
+                    loading="eager"
+                    decoding="async"
+                  />
+                ) : (
+                  <Image
+                    class="block mx-auto mb-8 rounded-md"
+                    src={solarNightLightImg}
+                    alt="Solar-powered LED night light stake in a garden"
+                    width={solarNightLightImg.width}
+                    height={solarNightLightImg.height}
+                    format="webp"
+                    loading="eager"
+                    decoding="async"
+                  />
+                )
+              }
+              {
+                heroSection?.["hero-image-4"] ? (
+                  <Image
+                    class="block mx-auto mb-8 rounded-md"
+                    src={heroSection["hero-image-4"] || `${barImg}`}
+                    alt="Bar area illuminated with ambient LED strip lighting"
+                    width={barImg.width}
+                    height={barImg.height}
+                    format="webp"
+                    loading="eager"
+                    decoding="async"
+                  />
+                ) : (
+                  <Image
+                    class="block mx-auto mb-8 rounded-md"
+                    src={barImg}
+                    alt="Bar area illuminated with ambient LED strip lighting"
+                    width={barImg.width}
+                    height={barImg.height}
+                    format="webp"
+                    loading="eager"
+                    decoding="async"
+                  />
+                )
+              }
+              <!--
+              <Image
+                class="block mx-auto mb-8 rounded-md"
+                src={solarNightLightImg}
+                alt="Solar-powered LED night light stake in a garden"
+                width={solarNightLightImg.width}
+                height={solarNightLightImg.height}
+                format="webp"
+                loading="eager"
+                decoding="async"
+              />
+        <Image
+              class="block mx-auto mb-8 rounded-md"
+              src={barImg}
+              alt="Bar area illuminated with ambient LED strip lighting"
+              width={barImg.width}
+              height={barImg.height}
+              format="webp"
+              loading="eager"
+              decoding="async"
+            />
+          -->
+              <div class="hidden xl:block bg-black w-64 h-12"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Hero section -->
+
+  <!-- Features Section -->
+  <section class="py-24 bg-white">
+    <div class="container px-4 mx-auto max-w-xl lg:max-w-6xl">
+      <div class="max-w-xl lg:max-w-3xl mx-auto mb-16 md:mb-20 text-center">
+        <h2
+          class="text-4xl lg:text-5xl font-semibold text-darkgray-primary text-left sm:text-center font-heading mb-6"
+        >
+          {
+            (() => {
+              const title = featuresSection?.["content-h2-title"];
+              console.log("🎯 Rendering Features Title:", title ? "CMS DATA" : "FALLBACK");
+              return title || "Pioneering the Next Generation of LED Technology";
+            })()
+          }
+        </h2>
+            <p
+              class="text-darkgray-primary text-left sm:text-center text-pretty ">
+              {/* set:html={featuresSection["content-features-paragraph"]} */}
+             {/*  {featuresSection?.["content-features-paragraph"] ||
+                "LEDPac delivers innovation and sustainability in every design, helping you shine while saving energy. Explore our range of LED lighting solutions tailored for residential, commercial, and industrial applications."}
+                */}
+                          {
+            (() => {
+              const paragraph = featuresSection?.["content-features-paragraph"];
+              console.log("📄 Rendering Features Paragraph:", paragraph ? "CMS DATA" : "FALLBACK");
+              return paragraph || "LEDPac delivers innovation and sustainability in every design, helping you shine while saving energy. Explore our range of LED lighting solutions tailored for residential, commercial, and industrial applications.";
+            })()
+          }
+            </p>
+      </div>
+
+      <!-- cards -->
+      <div class="flex flex-wrap -mx-4 -mb-8">
+        {featureCards.map((card: any, index: number) => {
+          console.log(`🃏 Rendering Feature Card ${index + 1}:`, card.title || `Fallback Card ${index + 1}`);
+
+          return (
+            <FeatureCard
+              title={card.title}
+              description={card.description}
+              image={card.image}
+              imageAlt={card.imageAlt}
+              buttonText={card.buttonText}
+              buttonUrl={card.buttonUrl}
+              reverseLayout={card.reverseLayout || index % 2 === 1}
+            />
+          );
+        })}
+      </div>
+    </div>
+  </section>
+  <!--  
+<IndexSectionFeatures3 /> 
+-->
+  <!-- End Features Section -->
+
+  <!-- Solutions Section  -->
+  <div class="container max-w-xl lg:max-w-6xl mx-auto px-4 pt-12 pb-24">
+    <h3 class="mb-8 text-4xl text-darkgray-primary font-heading text-center">
+      {solutionsSection?.["solutions-h3-title"] || "LED Lighting Solutions"}
+    </h3>
+   <!-- {
+      solutionsSection?.["solutions-paragraph"] && (
+        <div
+          class="mb-12 text-darkgray-primary text-pretty"
+          set:html={solutionsSection["solutions-paragraph"]}
+        />
+      )
+    } 
+    -->
+    <p class="mb-12 text-darkgray-primary text-pretty text-center">
+      {
+        (() => {
+          const solutionsParagraph = solutionsSection?.["solutions-paragraph"];
+          console.log("💡 Rendering Solutions Paragraph:", solutionsParagraph ? "CMS DATA" : "FALLBACK");
+          return solutionsParagraph || "Explore our range of LED lighting solutions tailored for residential, commercial, and industrial applications.";
+        })()
+      }
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {
+        solutionsCards.map((item: any, index: number) => (
+          console.log(`💡 Rendering Solutions Card ${index + 1}:`, item.title || `Fallback Card ${index + 1}`),
+          <SolutionsCard
+            title={item.title}
+            description={item.description}
+            image={item.image}
+            imageAlt={item.imageAlt}
+            class="text-pretty"
+          />
+        ))
+      }
+
+      <!-- Card 1: Motion Sensor -->
+      <!--
+    <div class="rounded-md overflow-hidden">
+      <Image
+        src={banner1Img}
+        alt="Abstract image representing Motion Sensor LED Lighting"
+        class="w-full rounded-md h-48 object-cover"
+        width={banner1Img.width}
+        height={banner1Img.height}
+        format="webp"
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="py-6">
+        <h4 class="mb-4 pb-6 text-darkgray-primary text-2xl font-heading">
+          Motion Sensor LED Lighting
+        </h4>
+        <p class="mb-4 text-darkgray-primary font-light">
+            SMART RB LEDS attached to motion sensors inside custom
+            fixtures that follow your moment fast or slow changing colors
+            at the same time. This technology is one of our staple
+            systems, allowing many technical options for many future
+            availability's.
+        </p>
+      </div>
+    </div>
+
+    <! -- Card 2: Landscape -- >
+    <div class="rounded-md overflow-hidden">
+      <Image
+        src={banner2Img}
+        alt="Abstract image representing Premium LED Landscape Solutions"
+        class="w-full rounded-md h-48 object-cover"
+        width={banner2Img.width}
+        height={banner2Img.height}
+        format="webp"
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="py-6">
+        <h4 class="mb-4 pb-6 text-darkgray-primary text-2xl font-heading">
+          Premium LED Landscape Solution
+        </h4>
+        <p class="mb-4 text-darkgray-primary font-light">
+            Elegant outdoor lighting solutions that enhance your
+            landscape, providing 70% savings on electricity compared to
+            traditional systems.
+        </p>
+      </div>
+    </div>
+
+    <! -- Card 3: Illumination Projects -- >
+    <div class="rounded-md overflow-hidden">
+      <Image
+        src={banner3Img}
+        alt="Abstract image representing LED Illumination Projects"
+        class="w-full rounded-md h-48 object-cover"
+        width={banner3Img.width}
+        height={banner3Img.height}
+        format="webp"
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="py-6">
+        <h4 class="mb-4 pb-6 text-darkgray-primary text-2xl font-heading">
+          LED Illumination Projects
+        </h4>
+        <p class="mb-4 text-darkgray-primary font-light">
+            LEDpac's RETROfit solutions for both low and high ceiling
+            downlighting designed for entryways, hallways, stairwells,
+            kitchens, home movie theatres, studios, game rooms and more.
+        </p>
+      </div>
+    </div>
+
+    <! -- Card 4: NanoLite C.O.B. -- >
+    <div class="rounded-md overflow-hidden">
+      <Image
+        src={banner4Img}
+        alt="Abstract image representing NanoLite C.O.B. Indoor LED Lighting"
+        class="w-full rounded-md h-48 object-cover"
+        width={banner4Img.width}
+        height={banner4Img.height}
+        format="webp"
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="py-6">
+        <h4 class="mb-4 pb-6 text-darkgray-primary text-2xl font-heading">
+          NanoLite C.O.B. Indoor LED Lighting
+        </h4>
+        <p class="mb-4 text-darkgray-primary font-light">
+            Chip-on-Board LEDs, also known as COBs, are the next and
+            newest generation of LED technology for indoor lighting.
+        </p>
+      </div>
+    </div>
+
+    <! -- Card 5: Exterior Outdoor -- >
+    <div class="rounded-md overflow-hidden">
+      <Image
+        src={banner5Img}
+        alt="Abstract image representing Exterior Outdoor LED Lighting"
+        class="w-full rounded-md h-48 object-cover"
+        width={banner5Img.width}
+        height={banner5Img.height}
+        format="webp"
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="py-6">
+        <h4 class="mb-4 pb-6 text-darkgray-primary text-2xl font-heading">
+          Exterior Outdoor LED Lighting
+        </h4>
+        <p class="mb-4 text-darkgray-primary font-light">
+            Premium low-voltage high-lumen LED solutions for submersible
+            and above grade outdoor landscape applications such as:
+            fountains, ponds, reflecting pools, outdoor step-lighting,
+            patio bar counters, exterior architectural features and more.
+        </p>
+      </div>
+    </div>
+
+    <! -- Card 6: Interior Illumination -- >
+    <div class="rounded-md overflow-hidden">
+       <Image
+        src={banner6Img}
+        alt="Abstract image representing Interior LED Illumination"
+        class="w-full rounded-md h-48 object-cover"
+        width={banner6Img.width}
+        height={banner6Img.height}
+        format="webp"
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="py-6">
+        <h4 class="mb-4 pb-6 text-darkgray-primary text-2xl font-heading">
+          Interior LED Illumination
+        </h4>
+        <p class="mb-4 text-darkgray-primary font-light">
+            LEDpac's Linear and Flexible solutions give premium
+            long-living light to architectural features, soffits, step
+            lighting, bar counters, built-in cabinetry, and more.
+        </p>
+      </div>
+    </div>
+    -->
+    </div>
+  </div>
+  <!--   
+<IndexSectionStructuresSolutionGrid /> 
+-->
+  <!-- End Structures Section Solution Grid -->
+</Layout>

@@ -1,0 +1,30 @@
+---
+import { getCollection, render } from 'astro:content';
+import ProductPageTemplate from '../../layouts/ProductPageTemplate.astro';
+
+// Import sidebar images
+//import nanoliteCobImg from '../../assets/images/nanolite-cob-led-lights.png';
+//import spiderCobImg from '../../assets/images/spider-cob-led-growlights-png-1744334845303.webp';
+//import solarLedImg from '../../assets/images/solar-night-light.jpg';
+//import bgImage from '../../assets/pstls-assets/images/blog-content/shadow-pink.png';
+
+//import Prose from '@/components/common/Prose.astro';
+
+export async function getStaticPaths() {
+  const productItems = await getCollection('products');
+  return productItems.map((product) => ({
+    params: { product: product.id },
+    props: { products: product },
+  }));
+}
+
+const { products } = Astro.props;
+const { Content } = await render(products);
+
+
+---
+
+<ProductPageTemplate products={products}
+>
+  <Content />
+</ProductPageTemplate>

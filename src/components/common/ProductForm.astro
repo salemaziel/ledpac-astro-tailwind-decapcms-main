@@ -1,0 +1,111 @@
+---
+
+type Props = {
+  title: string;
+  description: string;
+};
+
+const { title, description } = Astro.props;
+---
+
+      <div class="mt-16 bg-gray-100 rounded-lg p-6 md:p-8">
+        <h2 class="mb-6 text-3xl md:text-4xl font-heading text-center text-darkgray-primary">
+          {title}
+        </h2>
+        <p class="mb-8 text-lg md:text-xl text-darkgray-primary font-light text-center">
+          {description}
+        </p>
+        <form
+          name="ProductInfo"
+          method="POST"
+          data-netlify="true"
+          data-netlify-recaptcha="true"
+          netlify-honeypot="bot-field"
+          class="max-w-2xl mx-auto"
+        >
+          <input type="hidden" name="form-name" value="ProductInfo" />
+          
+          <!-- Honeypot field - hidden from humans but visible to bots -->
+          <p class="hidden">
+            <label>
+              Don't fill this out if you're human: <input name="bot-field" />
+            </label>
+          </p>
+          
+          <div class="mb-4">
+            <label class="block mb-2 text-darkgray-primary" for="name">Your Name</label>
+            <input
+              class="block w-full px-4 py-3 border outline-none rounded-md focus:ring-2 focus:ring-red-300"
+              type="text"
+              name="name"
+              placeholder="Enter your name"
+              id="name"
+              required
+            />
+          </div>
+          <div class="mb-4">
+            <label class="block mb-2 text-darkgray-primary" for="email">Email Address</label>
+            <input
+              class="block w-full px-4 py-3 border outline-none rounded-md focus:ring-2 focus:ring-red-300"
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              id="email"
+              required
+            />
+          </div>
+          <div class="mb-4">
+            <label class="block mb-2 text-darkgray-primary" for="product">Product Interest</label>
+            <select
+              class="block w-full px-4 py-3 border outline-none rounded-md bg-white focus:ring-2 focus:ring-red-300"
+              name="product"
+              id="product"
+            >
+              <option>Solar/White LED Lights</option>
+              <option>Spider COB LED Grow lights</option>
+              <option>Nano/JIT-C.O.B. LED Lights</option>
+              <option>Custom LED Solutions</option>
+            </select>
+          </div>
+          <div class="mb-6">
+            <label class="block mb-2 text-darkgray-primary" for="message">Your Message</label>
+            <textarea
+              class="block w-full px-4 py-3 border outline-none rounded-md focus:ring-2 focus:ring-red-300"
+              name="message"
+              id="message"
+              rows="4"
+              placeholder="Tell us about your requirements..."
+            />
+          </div>
+          <div class="mb-6">
+            <div class="form-check">
+              <input
+                type="radio"
+                name="customer-type"
+                value="business"
+                id="business-radio"
+                checked
+              />
+              <label for="business-radio">Business Customer</label>
+            </div>
+            <div class="form-check">
+              <input
+                type="radio"
+                name="customer-type"
+                value="individual"
+                id="individual-radio"
+              />
+              <label for="individual-radio">Individual Customer</label>
+            </div>
+          </div>
+          <div class="mb-6">
+            <div data-netlify-recaptcha="true"></div>
+          </div>
+          <button
+            type="submit"
+            class="w-full py-3 px-8 text-center font-bold text-white uppercase bg-red-700 rounded-md hover:bg-red-800 transition duration-200"
+          >
+            Submit Inquiry
+          </button>
+        </form>
+      </div>

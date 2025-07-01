@@ -1,0 +1,39 @@
+---
+// filepath: /home/pc/Public/websites/CLIENTS/ledPac.com/2023/ledpac-tailwind2025-astro-main/src/components/common/PageTitle.astro
+
+interface Props {
+  pageTitle: string;
+  breadcrumbTitle?: string;
+  breadcrumbURL?: string;
+}
+
+const { pageTitle, breadcrumbTitle, breadcrumbURL } = Astro.props;
+
+// Auto-generate breadcrumb from current URL
+const currentPath = Astro.url.pathname;
+const pathSegments = currentPath.split('/').filter(segment => segment !== '');
+const firstSegment = pathSegments[0] || '';
+
+// Mapping of URL segments to display titles
+const sectionTitles: Record<string, string> = {
+  'products': 'Products',
+  'portfolio': 'Our Work', 
+  'pages': 'Pages',
+  'about': 'About',
+  'contact': 'Contact',
+  'services': 'Services',
+};
+
+// Auto-generate breadcrumb values if not provided
+const autoBreadcrumbTitle = breadcrumbTitle || sectionTitles[firstSegment] || 'Home';
+const autoBreadcrumbURL = breadcrumbURL || (firstSegment ? firstSegment : '');
+---
+
+<div class="py-20 max-w-4xl" transition:name="pageTitle">
+  <a href={`/${autoBreadcrumbURL}`} class="text-red-500 hover:underline">
+    {autoBreadcrumbTitle}
+  </a>
+  <h1 class="text-4xl md:text-5xl font-medium font-heading text-darkgray-primary mt-4">
+    {pageTitle}
+  </h1>
+</div>

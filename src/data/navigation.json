@@ -1,0 +1,35 @@
+{
+  "main_menu": [
+    {
+      "type": "action",
+      "title": "Home",
+      "url": "/",
+      "button": false
+    },
+    {
+      "type": "action",
+      "title": "About",
+      "url": "/about",
+      "button": false
+    },
+    {
+      "type": "action",
+      "title": "Products",
+      "url": "/products",
+      "button": false
+    },
+    {
+      "type": "action",
+      "title": "Our Work",
+      "url": "/our-work",
+      "arrow": false,
+      "button": false
+    },
+    {
+      "type": "action",
+      "title": "Contact Us",
+      "url": "/contact",
+      "button": true
+    }
+  ]
+}

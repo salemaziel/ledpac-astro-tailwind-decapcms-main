@@ -1,0 +1,137 @@
+---
+import { Image } from 'astro:assets';
+
+import nanoliteCobImg from '../../assets/images/nanolite-cob-led-lights.png';
+import spiderCobImg from '../../assets/images/spider-cob-led-growlights-png-1744334845303.webp';
+import solarLedImg from '../../assets/images/solar-night-light.jpg';
+
+// Define props if needed
+export interface Props {
+    /** Optional dynamic item to display in the sidebar with image, title and description */
+    dynamicItem?: {
+        image: {
+            src: string;
+            width: number;
+            height: number;
+            alt: string;
+        };
+        title?: string;
+        description?: string;
+        link?: string; // Optional link for the dynamic item
+    };
+
+}
+const { dynamicItem } = Astro.props;
+
+---
+
+        <!-- Sidebar -->
+        <div class="w-full lg:w-1/3 px-4">
+          <div class="px-6 pb-6 mb-8">
+             <Image
+              class="w-full h-auto mb-4 rounded-md"
+              src={nanoliteCobImg}
+              alt="NanoLite COB LED strip light example"
+              width={nanoliteCobImg.width}
+              height={nanoliteCobImg.height}
+              format="webp"
+              loading="lazy"
+              decoding="async"
+            />
+            <h4 class="mb-2 text-darkgray-primary text-xl font-medium font-heading">
+              NanoLite COB LED
+            </h4>
+            <p class="mb-6 text-darkgray-primary">
+              Chip on board the newest innovation in linearal LED lighting,
+              continuous bright consistant LED illumination throught entire
+              product.
+            </p>
+            <a
+              class="inline-block w-full md:w-auto py-3 px-8 text-center font-bold text-gray-600 uppercase align-baseline rounded border border-gray-200 hover:bg-gray-50 transition duration-200 mt-4 tracking-wider"
+              href="/products/nanolite-cob-led"
+            >
+              LEARN MORE
+            </a>
+          </div>
+          <hr class="text-darkgray-primary pb-12 border-t-[1px] border-gray-400" />
+          <div class="pb-6 mb-8 px-6">
+             <Image
+              class="w-full h-auto mb-4"
+              src={spiderCobImg}
+              alt="Spider COB LED Growlight example"
+              width={spiderCobImg.width}
+              height={spiderCobImg.height}
+              format="webp"
+              loading="lazy"
+              decoding="async"
+            />
+            <h4 class="mb-6 text-darkgray-primary text-xl font-medium font-heading">
+              Spider COB LED Growlights
+            </h4>
+            <p class="mb-2 text-darkgray-primary">
+              New Spider COB LED Growlights grow light systems allowing the best
+              color spectrum closest to the sunlight and make plants grow faster
+              night and day underground.
+            </p>
+            <a
+              class="inline-block w-full md:w-auto py-3 px-8 text-center font-bold text-darkgray-primary uppercase align-baseline rounded border border-gray-200 hover:bg-gray-50 transition duration-200 mt-4 tracking-wider"
+              href="/products/rgb-led"
+            >
+              LEARN MORE
+            </a>
+          </div>
+          <hr class="text-darkgray-primary pb-12 border-t-[1px] border-gray-400" />
+          <div class="px-6 pb-6 mb-8">
+             <Image
+              class="w-full h-auto mb-4"
+              src={solarLedImg}
+              alt="Solar powered LED night light example"
+              width={solarLedImg.width}
+              height={solarLedImg.height}
+              format="webp"
+              loading="lazy"
+              decoding="async"
+            />
+            <h4 class="mb-2 text-darkgray-primary text-xl font-medium font-heading">
+              Solar Powered LEDs
+            </h4>
+            <p class="mb-2 text-darkgray-primary">
+              Solar-powered LED illumination. Quick illumination powered by the
+              sun, Lighting the darkness through the night using super-efficient
+              White LEDs.
+            </p>
+            <a
+              class="inline-block w-full md:w-auto py-3 px-8 text-center font-bold text-darkgray-primary uppercase align-baseline rounded border border-gray-200 hover:bg-gray-50 transition duration-200 mt-4 tracking-wider"
+              href="/products/solar-led"
+            >
+              LEARN MORE
+            </a>
+          </div>
+        <!--    {dynamicItem && (
+                <div class="px-6 pb-6 mb-8">
+                <Image
+                    class="w-full h-auto mb-4"
+                    src={dynamicItem.image.src}
+                    alt={dynamicItem.image.alt}
+                    width={dynamicItem.image.width}
+                    height={dynamicItem.image.height}
+                    format="webp"
+                    loading="lazy"
+                    decoding="async"
+                />
+                <h4 class="mb-2 text-darkgray-primary text-xl font-medium font-heading">
+                    {dynamicItem.title}
+                </h4>
+                <p class="mb-2 text-darkgray-primary">
+                    {dynamicItem.description}
+                </p>
+                <a
+                    class="inline-block w-full md:w-auto py-3 px-8 text-center font-bold text-darkgray-primary uppercase align-baseline rounded border border-gray-200 hover:bg-gray-50 transition duration-200 mt-4 tracking-wider"
+                    href={`${dynamicItem.link || '#'}`}
+                >
+                    LEARN MORE
+                </a>
+                </div> 
+            )} -->
+        </div>
+        <!-- End Sidebar -->

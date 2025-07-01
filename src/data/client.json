@@ -1,0 +1,16 @@
+{
+	"name": "LEDPac LLC",
+	"email": "info@ledpac.com",
+	"phoneForTel": "",
+	"phoneFormatted": "",
+	"address": {
+		"lineOne": "First Address Line",
+		"lineTwo": "Second Address Line",
+		"city": "Escondido",
+		"state": "CA",
+		"zip": "92027",
+		"mapLink": ""
+	},
+	"domain": "new.ledpac.com",
+	"logo": "../assets/images/logo-light-shadow.png"
+}

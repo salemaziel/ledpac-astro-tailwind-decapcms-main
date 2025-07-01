@@ -1,0 +1,193 @@
+# Decap CMS Configuration with DecapBridge Authentication
+local_backend: true # uses port 8081 for default, use an .env file with PORT=8082 and edit below
+  # when using a custom proxy server port
+  #url: http://localhost:8082/api/v1
+  # when accessing the local site from a host other than 'localhost' or '127.0.0.1'
+  #allowed_hosts: ['192.168.0.1']
+
+
+# Use DecapBridge auth (required)
+backend:
+  name: git-gateway
+  # Note: Replace with your actual repository and identity_url from DecapBridge dashboard
+  repo: salemaziel/ledpac-tailwind2025 # provided by decapbridge
+  branch: astro-01
+  identity_url: https://auth.decapbridge.com/sites/e3025c6d-d397-4907-bdfd-2f0ec4aba0e2 # provided by decapbridge
+  gateway_url: https://gateway.decapbridge.com # provided by decapbridge
+  # Quickly see who did what (optional)
+  commit_messages:
+    create: Create {{collection}} "{{slug}}" - {{author-name}} <{{author-login}}> via DecapBridge
+    update: Update {{collection}} "{{slug}}" - {{author-name}} <{{author-login}}> via DecapBridge
+    delete: Delete {{collection}} "{{slug}}" - {{author-name}} <{{author-login}}> via DecapBridge
+    uploadMedia: Upload "{{path}}" - {{author-name}} <{{author-login}}> via DecapBridge
+    deleteMedia: Delete "{{path}}" - {{author-name}} <{{author-login}}> via DecapBridge
+    openAuthoring: Message {{message}} - {{author-name}} <{{author-login}}> via DecapBridge
+
+
+# Better Decap + Bridge logo (optional)
+logo_url: https://decapbridge.com/decapcms-with-bridge.svg
+
+# Media settings
+media_folder: "src/assets/images"
+public_folder: "src/assets/images"
+
+# Add site links in DecapCMS (optional)
+site_url: https://new.ledpac.com # Replace with your actual site URL
+
+# Enable editor preview for better experience
+show_preview_links: true
+display_url: https://new.ledpac.com
+
+
+# Collections configuration
+collections:
+  # Products Collection (Folder Collection)
+  - name: "products"
+    label: "Products"
+    label_singular: "Product"
+    description: "Manage your products here.      "
+    folder: "src/content/products"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    editor:
+      preview: true
+    fields:
+      - { label: "Page Title", name: "pageTitle", widget: "string" }
+      - { label: "Page Description", name: "pageDescription", widget: "text" }
+      - { label: "Slug", name: "slug", widget: "string", required: false, hint: "URL path (auto-generated if left empty)" }
+      - { label: "Publish Date", name: "publishDate", widget: "datetime", required: false, default: "{{now}}" }
+      - { label: "Draft", name: "isDraft", widget: "boolean", default: false, hint: "Check to save as draft" }
+      - { label: "Featured Image", name: "image", widget: "image", required: true, hint: "Main product image" }
+      - { label: "Gallery Images", name: "galleryImages", widget: "list", required: false, 
+          field: { label: "Image", name: "image", widget: "image" } }
+      - { label: "Page Image", name: "pageImage", widget: "image", required: false }
+      - { label: "Page Type", name: "pageType", widget: "select", options: ["product", "article"], default: "product" }
+      - { label: "Component Name", name: "componentName", widget: "string", hint: "The Astro component to import and use (e.g., ProductSectionBlogContent)", required: false }
+      - { label: "Content", name: "body", widget: "markdown", required: false, hint: "Main product description and details" }
+
+  # Portfolio Collection (Folder Collection)
+  - name: "portfolio"
+    label: "Portfolio Projects (Our Work)"
+    label_singular: "Portfolio Project"
+    folder: "src/content/portfolio"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    editor:
+      preview: true
+    fields:
+      - { label: "Page Title", name: "pageTitle", widget: "string" }
+      - { label: "Page Description", name: "pageDescription", widget: "text" }
+      - { label: "Page Image", name: "pageImage", widget: "image", required: false }
+      - { label: "Page Type", name: "pageType", widget: "select", options: ["article", "portfolio"], default: "article" }
+      - { label: "Component Name", name: "componentName", widget: "string", hint: "The Astro component to import and use (e.g., PortfolioSectionStructures)", required: false }
+      - { label: "Body", name: "body", widget: "markdown", required: false }
+
+  # Individual Pages - Home Page Template
+  - name: "home-page"
+    label: "Home Page"
+    files:
+      - label: "Home Page"
+        name: "home"
+        file: "src/content/pages/home.md"
+        fields:
+          - { label: "Page Title", name: "pageTitle", widget: "string", required: true }
+          - { label: "Page Description", name: "pageDescription", widget: "text" }
+          - { label: "Page Image", name: "pageImage", widget: "image", required: false }
+          - { label: "Page Type", name: "pageType", widget: "string", required: false }
+          - { label: "Components", name: "components", widget: "list", fields: [
+              { label: "Component Name", name: "name", widget: "string" }
+            ]}
+          - { label: "Body", name: "body", widget: "markdown", required: false }
+
+  # Individual Pages - About Page Template
+  - name: "about-page"
+    label: "About Page"
+    files:
+      - label: "About Page"
+        name: "about"
+        file: "src/content/pages/about.md"
+        fields:
+          - { label: "Page Title", name: "pageTitle", widget: "string" }
+          - { label: "Page Description", name: "pageDescription", widget: "text" }
+          - { label: "Page Image", name: "pageImage", widget: "image", required: false }
+          - { label: "Page Type", name: "pageType", widget: "string", required: false }
+          - { label: "Body", name: "body", widget: "markdown", required: false }
+
+  # Individual Pages - Contact Page Template
+  - name: "contact-page"
+    label: "Contact Page"
+    files:
+      - label: "Contact Page"
+        name: "contact"
+        file: "src/pages/contact.astro"
+        fields:
+          - { label: "Page Title", name: "pageTitle", widget: "string" }
+          - { label: "Page Description", name: "pageDescription", widget: "text" }
+          - { label: "Page Image", name: "pageImage", widget: "image", required: false }
+          - { label: "Page Type", name: "pageType", widget: "string", required: false }
+          - { label: "Body", name: "body", widget: "markdown", required: false }
+
+
+  # Individual Pages - Products Landing Page Template
+  - name: "products-page"
+    label: "Products Landing Page"
+    files:
+      - label: "Products Page"
+        name: "products"
+        file: "src/pages/products.astro"
+        fields:
+          - { label: "Page Title", name: "pageTitle", widget: "string" }
+          - { label: "Page Description", name: "pageDescription", widget: "text" }
+          - { label: "Page Image", name: "pageImage", widget: "image", required: false }
+          - { label: "Page Type", name: "pageType", widget: "string", required: false }
+          - { label: "Body", name: "body", widget: "markdown", required: false }
+
+  # Individual Pages - Portfolio Landing Page Template
+  - name: "portfolio-page"
+    label: "Portfolio Landing Page"
+    files:
+      - label: "Our Work Page"
+        name: "our-work"
+        file: "src/pages/our-work.astro"
+        fields:
+          - { label: "Page Title", name: "pageTitle", widget: "string" }
+          - { label: "Page Description", name: "pageDescription", widget: "text" }
+          - { label: "Page Image", name: "pageImage", widget: "image", required: false }
+          - { label: "Page Type", name: "pageType", widget: "string", required: false }
+          - { label: "Body", name: "body", widget: "markdown", required: false }
+
+  # New Page Templates - allows creating new pages from templates
+  - name: "page-templates"
+    label: "Create New Page"
+    folder: "src/pages"
+    create: true
+    slug: "{{slug}}"
+    extension: "astro"
+    format: "frontmatter"
+    fields:
+      - { label: "Template Type", name: "templateType", widget: "select", options: [
+          { label: "Basic Page", value: "basic" },
+          { label: "Product Page", value: "product" },
+          { label: "Portfolio Page", value: "portfolio" },
+          { label: "Contact Page", value: "contact" },
+          { label: "About Page", value: "about" }
+        ], default: "basic" }
+      - { label: "Page Title", name: "pageTitle", widget: "string" }
+      - { label: "Page Description", name: "pageDescription", widget: "text" }
+      - { label: "Page Image", name: "pageImage", widget: "image", required: false }
+      - { label: "Page Type", name: "pageType", widget: "select", options: ["page", "product", "article", "portfolio"], default: "page" }
+      - { label: "Component Name", name: "componentName", widget: "string", required: false, hint: "The Astro component to import and use" }
+      - { label: "Body", name: "body", widget: "markdown", required: false }
+      - { label: Sections, name: "sections", widget: "list", required: false, hint: "Page Sections", fields: [
+          { label: "Section Type", name: "type", widget: "select", options: [
+              { label: "Hero Section", value: "hero" },
+              { label: "Content Section", value: "content" },
+              { label: "Image Gallery", value: "gallery" },
+              { label: "Testimonials", value: "testimonials" }
+            ], default: "content" },
+          { label: "Section Content", name: "content", widget: "markdown" }
+        ] }

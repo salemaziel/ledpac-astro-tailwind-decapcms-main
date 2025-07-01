@@ -1,0 +1,59 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  title: string;
+  description: string;
+  image: any;
+  imageAlt: string;
+  class?: string;
+}
+
+const {
+  title,
+  description,
+  image,
+  imageAlt,
+  class: className = "",
+} = Astro.props;
+
+// Handle both string URLs (from CMS) and imported images
+const imageProps =
+  typeof image === "string"
+    ? { src: image, width: 600, height: 400 }
+    : { src: image, width: image.width, height: image.height };
+---
+
+<div class={`rounded-md overflow-hidden ${className}`}>
+  {/* Use Astro's Image component for optimized images */}
+  {/* If image is a string, use it directly; otherwise, use the Image component */}
+  {typeof image === "string" ? (
+    <img
+      src={image}
+      alt={imageAlt}
+      class="w-full rounded-md h-48 object-cover"
+      width={600}
+      height={400}
+      loading="lazy"
+    />
+  ) : (
+    <Image
+      src={image}
+      alt={imageAlt}
+      class="w-full rounded-md h-48 object-cover"
+      format="webp"
+      width={image.width}
+      height={image.height}
+      loading="lazy"
+      decoding="async"
+    />
+  )}
+  <div class="py-6">
+    <h4 class="mb-4 pb-6 text-darkgray-primary text-2xl font-heading">
+      {title}
+    </h4>
+    <p class="mb-4 text-darkgray-primary font-light">
+      {description}
+    </p>
+  </div>
+</div>

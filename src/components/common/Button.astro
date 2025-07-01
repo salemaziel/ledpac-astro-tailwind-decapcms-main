@@ -1,0 +1,34 @@
+---
+// Define the expected props for the component
+interface Props {
+  title: string;
+  href?: string; // Optional: If provided, renders an <a> tag
+  class?: string; // Allow passing additional classes
+  [key: string]: any; // Allow any other standard HTML attributes
+}
+
+// Get the props passed to the component
+const { title, href, class: additionalClasses, ...rest } = Astro.props;
+
+// Define the base classes for styling
+const baseClasses = "inline-block w-full md:w-auto py-3 px-8 text-center font-bold text-darkgray-primary uppercase rounded border border-gray-300 hover:bg-gray-100 transition duration-300 mt-4 tracking-wider";
+
+// Combine base classes with any additional classes passed via props
+const combinedClasses = [baseClasses, additionalClasses].filter(Boolean).join(' ');
+
+// Set a default type for the button if it's not a link and no type is provided
+if (!href && !rest.type) {
+  rest.type = 'button';
+}
+---
+
+<!-- Conditionally render <a> if href is provided, otherwise render <button> -->
+{href ? (
+  <a href={href} class={combinedClasses} {...rest}>
+    {title}
+  </a>
+) : (
+  <button class={combinedClasses} {...rest}>
+    {title}
+  </button>
+)}

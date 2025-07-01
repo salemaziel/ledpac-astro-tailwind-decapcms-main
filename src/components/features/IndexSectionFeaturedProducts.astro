@@ -1,0 +1,133 @@
+---
+import { Image } from 'astro:assets';
+
+// Import images from src/assets
+import solarLedImg from '../../assets/images/solar-night-light.jpg';
+import spiderCobImg from '../../assets/images/spider-cob-led-growlights-png-1744334845303.webp';
+import nanoliteCobImg from '../../assets/images/nanolite-cob-led-lights.png';
+
+import Button from '../common/Button.astro';
+
+// Define props if needed (none in this example)
+// export interface Props {}
+// const {} = Astro.props;
+---
+
+<section class="py-24 bg-white">
+  <div class="container px-4 mx-auto max-w-6xl">
+    <div class="max-w-xl lg:max-w-3xl mx-auto mb-16 md:mb-20 text-center">
+      <h2 class="text-4xl lg:text-5xl font-semibold text-darkgray-primary text-left sm:text-center font-heading mb-6">
+        Pioneering the
+        <br class="block sm:hidden"/>
+        Next Generation
+        <br class="block sm:hidden"/>
+        of LED Technology
+      </h2>
+    </div>
+
+    <!-- cards -->
+    <div class="flex flex-wrap -mx-4 -mb-8">
+      <!-- Card 1: Solar Powered LED -->
+      <div class="w-full px-3 mb-8">
+        <div class="flex flex-wrap sm:flex-nowrap items-center">
+          <div class="w-full sm:w-1/2 p-3">
+            <a href="/products/solar-led">
+              <Image
+                class="block w-full rounded"
+                src={solarLedImg}
+                alt="Solar Powered LED Lights illuminating a pathway"
+                width={solarLedImg.width}
+                height={solarLedImg.height}
+                format="webp"
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+          </div>
+          <div class="w-full sm:w-1/2 p-3">
+            <h3 class="text-2xl xl:text-3xl font-bold tracking-wider uppercase mb-4 text-darkgray-primary">
+              <a href="/products/solar-led">
+                Solar Powered LED
+              </a>
+            </h3>
+            <p class="mb-8 text-darkgray-primary text-pretty">
+              High Powered solar LED illumination breakthrough with bright reliable
+              adjustable illumination, powered by the sun. Lighting the darkness
+              through the night using super-efficient white LEDs.
+            </p>
+            <Button title="Explore Solar LEDs" href="/products/solar-led" class="mt-4" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Spider COB LED Grow Lights -->
+      <div class="w-full px-3 mb-8">
+         <div class="flex flex-wrap sm:flex-nowrap items-center sm:flex-row-reverse">
+           <div class="w-full sm:w-1/2 p-3">
+            <a href="/products/rgb-led"> <!-- Assumed link -->
+              <Image
+                class="block w-full rounded"
+                src={spiderCobImg}
+                alt="Spider COB LED Grow Lights system over plants"
+                width={spiderCobImg.width}
+                height={spiderCobImg.height}
+                format="webp"
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+          </div>
+           <div class="w-full sm:w-1/2 p-3">
+            <h3 class="text-2xl xl:text-3xl font-bold tracking-wider uppercase mb-4 text-darkgray-primary">
+              <a href="/products/rgb-led"> 
+                Industrial LED Grow Lights
+              </a>
+            </h3>
+            <p class="mb-8 text-darkgray-primary text-pretty">
+              Industrial LED Grow light systems, allowing the best color spectrum
+              closest to the sun. Plants grow stronger faster night and day
+              indoors.
+            </p>
+
+            <Button title="Explore Industrial LED Growlights" href="/products/rgb-led" class="mt-4" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: NANOlite COB LED Lights -->
+      <div class="w-full px-3 mb-8">
+        <div class="flex flex-wrap sm:flex-nowrap items-center">
+           <div class="w-full sm:w-1/2 p-3">
+            <a href="/products/nanolite-cob-led"> 
+              <Image
+                class="block w-full rounded"
+                src={nanoliteCobImg}
+                alt="Close-up of NANOlite COB LED light strip showing continuous illumination"
+                width={nanoliteCobImg.width}
+                height={nanoliteCobImg.height}
+                format="webp"
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+          </div>
+           <div class="w-full sm:w-1/2 p-3">
+            <h3 class="text-2xl xl:text-3xl font-bold tracking-wider uppercase mb-4 text-darkgray-primary">
+              <a href="/products/nanolite-cob-led"> 
+                NANOlite COB LED Lights
+              </a>
+            </h3>
+            <p class="mb-8 text-darkgray-primary text-pretty">
+              COB Innovation in linear LED lighting, NANOlite. Continuous,
+              bright, reliable LED illumination through entire product. Pure
+              white or warm white with continuous illumination LED technology.
+            </p>
+
+            <Button title="Explore NANOlite COB LEDs" href="/products/nanolite-cob-led" class="mt-4" />
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

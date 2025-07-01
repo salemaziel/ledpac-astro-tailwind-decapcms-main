@@ -1,0 +1,28 @@
+---
+import { getCollection, render } from 'astro:content';
+import PortfolioProjectPageTemplate from '@/layouts/PortfolioProjectPageTemplate.astro';
+
+
+
+// Generates the individual portfolio pages based on the portfolio collection
+export async function getStaticPaths() {
+	const portfolioItems = await getCollection("portfolio");
+	return portfolioItems.map((entry) => ({
+		params: { portfolio: entry.id },
+		props: { portfolio: entry },
+	}));
+}
+
+
+
+const { portfolio } = Astro.props;
+
+const { Content } = await render(portfolio);
+
+---
+
+<PortfolioProjectPageTemplate portfolio={portfolio}>
+  <Content />
+</PortfolioProjectPageTemplate>
+
+

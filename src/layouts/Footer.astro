@@ -1,0 +1,59 @@
+---
+// Use content from one of the original footer components (e.g., IndexSectionFooter11.js)
+// Replace React fragment and export with Astro component structure
+import { Image } from "astro:assets";
+
+import Logo from '../assets/images/logo-light-shadow-150x55.png'
+
+import Twitter from '../assets/pstls-assets/logos/twitter.svg';
+import Google from '../assets/pstls-assets/logos/google.svg';
+import Facebook from '../assets/pstls-assets/logos/facebook.svg';
+
+
+---
+<section class="py-24 bg-black">
+  <div class="container px-4 mx-auto max-w-6xl">
+    <div class="flex flex-wrap -mx-4 mb-10 justify-between">
+      <div class="w-full md:w-1/5 px-4 mb-6 md:mb-0">
+        <a class="inline-block" href="/">
+          <Image 
+          src={Logo.src} 
+          alt="LEDPac Logo"
+          width={150}
+          height={Logo.height}
+          format="webp"
+          loading="lazy"
+          decoding="async"
+          />
+        </a>
+      </div>
+      <div class="w-full md:w-3/5 px-4 mb-6 md:mb-0">
+        <ul class="md:flex items-center justify-center">
+          <li class="mb-6 md:mb-0 md:mr-12"><a class="inline-block font-bold text-sm text-white hover:text-gray-200" href="/about">About</a></li>
+          <li class="mb-6 md:mb-0 md:mr-12"><a class="inline-block font-bold text-sm text-white hover:text-gray-200" href="/products">Products</a></li>
+          <li class="mb-6 md:mb-0 md:mr-12"><a class="inline-block font-bold text-sm text-white hover:text-gray-200" href="/our-work">Our Work</a></li>
+          <li><a class="inline-block font-bold text-sm text-white hover:text-gray-200" href="/contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="w-full md:w-1/5 px-4">
+        <div class="flex md:justify-end">
+          <!-- Placeholder social icons - use actual SVGs or icon components if available -->
+          <a class="inline-block mr-4" href="https://twitter.com" target="_blank" rel="noopener noreferrer" title="Follow us on Twitter">
+            <!-- Uncomment and use actual SVG or component for Twitter -->
+         <!--    <img src="/pstls-assets/logos/twitter.svg" alt="Twitter" /> -->
+             <Twitter />
+          </a>
+          <a class="inline-block mr-4" href="https://google.com" target="_blank" rel="noopener noreferrer" title="Follow us on Google">
+            <!-- <img src="/pstls-assets/logos/google.svg" alt="Google" /> -->
+            <Google />
+          </a>
+          <a class="inline-block" href="https://facebook.com" target="_blank" rel="noopener noreferrer" title="Follow us on Facebook">
+            <!-- <img src="/pstls-assets/logos/facebook.svg" alt="Facebook" /> -->
+            <Facebook />
+          </a>
+        </div>
+      </div>
+    </div>
+    <p class="text-sm text-gray-500 text-center">© LEDPac. 2025 All right reserved.</p>
+  </div>
+</section>

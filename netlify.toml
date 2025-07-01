@@ -1,0 +1,29 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NPM_FLAGS = "--legacy-peer-deps --force"
+
+
+# --- Plugins ---
+# List of Netlify plugins to use during the build process.
+
+
+[[plugins]]
+  package = "netlify-plugin-image-optim"
+
+[[plugins]]
+  package = "@netlify/plugin-lighthouse"
+
+# --- End Plugins ---
+
+# --- Headers - CORS - Security ---
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' data: https://unpkg.com https://media-library.cloudinary.com ; connect-src 'self'  https://auth.decapbridge.com https://gateway.decapbridge.com https://www.netlifystatus.com ; img-src 'self' data: blob: https://new.ledpac.com https://res.cloudinary.com https://ledpac.com https://old.ledpac.com https://ledpac-llc.netlify.app https://decapbridge.com https://media-library.cloudinary.com https://player.vimeo.com https://i.vimeocdn.com ; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com ; frame-ancestors 'none' ; base-uri 'self' ; font-src 'self' data: https://fonts.gstatic.com ; frame-src 'self' https://player.vimeo.com ;"

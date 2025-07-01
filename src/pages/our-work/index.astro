@@ -1,0 +1,146 @@
+---
+// src/pages/our-work/index.astro
+import Layout from "../../layouts/Layout.astro";
+import PageTitle from "@/components/common/PageTitle.astro";
+import { getEntry, getCollection } from "astro:content";
+import { Image } from "astro:assets";
+
+// Import images
+//import spiderCobImg from '../../assets/images/rgb-growlight-square.png';
+//import nanoliteCobImg from '../../assets/images/nanolite-cob-led-lights.png';
+//import solarLedImg from '../../assets/images/solar-night-light.jpg'; // Sidebar
+import Sidebar from "@/components/common/Sidebar.astro";
+
+//import costcoThumbImg from '../../assets/images/costco-after-442x332.jpg';
+//import finleyThumbImg from '../../assets/images/finley-8-jpg-1744889097590.webp';
+import airport2Img from "../../assets/images/airport2.jpg";
+import airport3Img from "../../assets/images/airport3.jpg";
+import airport4Img from "../../assets/images/airport4.jpg";
+import airport5Img from "../../assets/images/airport5.jpg";
+import bgImage from "../../assets/pstls-assets/images/blog-content/shadow-pink.png";
+
+import PortfolioProjectLink from "@/components/portfolio/PortfolioProjectLink.astro";
+import type { CollectionEntry } from "astro:content";
+
+type Props = {
+  portfolio: CollectionEntry<"portfolio">;
+  pageData: {
+    title: string;
+    description: string;
+    pageImage?: string;
+    pageType?: string;
+  };
+};
+
+// Get the content from the CMS
+const pageData = await getEntry("pages", "our-work");
+const portfolioItems = await getCollection("portfolio");
+
+// Use CMS content if available, otherwise fall back to defaults
+const pageTitle = pageData.data.title;
+const pageDescription = pageData.data.description;
+const pageImage = typeof pageData.data.image === 'string' ? pageData.data.image : pageData.data.image?.src || pageData.data.pageImage;
+const preloadedImage = pageData.data?.preloadedImage || (typeof pageData.data.image === 'object' ? pageData.data.image : null);
+const pageType = pageData.data.pageType || "website";
+---
+
+<Layout title={pageTitle} description={pageDescription} image={pageImage} preloadedImage={preloadedImage} type={pageType}>
+  <section
+    class="pb-24 mx-auto"
+    style={`background-image: url(${bgImage.src}); background-repeat: no-repeat; background-size: cover;`}
+  >
+    <div class="container mx-auto px-4 max-w-6xl">
+      <PageTitle pageTitle={pageTitle} breadcrumbTitle="Home" />
+
+      <div class="flex flex-wrap -mx-4">
+        <!-- Main Content -->
+        <div class="w-full lg:w-2/3 px-4 mb-12 lg:mb-0">
+          <h2
+            class="text-2xl font-semibold font-heading mb-6 text-darkgray-primary uppercase"
+          >
+            Projects By LEDPac
+          </h2>
+          <p class="leading-8 mb-6 text-darkgray-primary font-light">
+            {pageDescription}
+          </p>
+
+          <!-- Project Links -->
+          <div class="flex flex-wrap justify-between mb-6 -mx-2">
+            {
+              portfolioItems.map((item) => (
+                <PortfolioProjectLink
+                  title={item.data.title}
+                  description={item.data.description}
+                  image={item.data.image}
+                  slug={`/our-work/${item.data.slug}`}
+                />
+              ))
+            }
+          </div>
+
+          <hr class="border-t border-gray-300 mb-8 pb-8" />
+
+          <h3
+            class="text-2xl text-darkgray-primary font-semibold font-heading mb-6 uppercase"
+          >
+            Project Photo Gallery
+          </h3>
+          <p class="leading-8 mb-6 text-darkgray-primary font-light">
+            LEDpac has 4 patents in LED technology, with 12 additional patents pending. One of the first LED companies to submit products under the UL2108 guidelines, LEDpac offers a range of UL listed products and electronic systems using only the finest LEDs available.
+          </p>
+
+          <Image
+            class="mb-4 block w-full rounded-md"
+            src={airport2Img}
+            alt="Indianapolis Airport project example main image"
+            width={airport2Img.width}
+            height={airport2Img.height}
+            format="webp"
+            loading="lazy"
+            decoding="async"
+          />
+
+          <!-- Airport Image Grid -->
+          <div
+            class="py-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"
+          >
+            <Image
+              class="block w-full h-auto rounded-md"
+              src={airport3Img}
+              alt="Indianapolis Airport project image 3"
+              width={airport3Img.width}
+              height={airport3Img.height}
+              format="webp"
+              loading="lazy"
+              decoding="async"
+            />
+            <Image
+              class="block w-full h-auto rounded-md"
+              src={airport4Img}
+              alt="Indianapolis Airport project image 4"
+              width={airport4Img.width}
+              height={airport4Img.height}
+              format="webp"
+              loading="lazy"
+              decoding="async"
+            />
+            <Image
+              class="block w-full h-auto rounded-md"
+              src={airport5Img}
+              alt="Indianapolis Airport project image 5"
+              width={airport5Img.width}
+              height={airport5Img.height}
+              format="webp"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+        <!-- End Main Content -->
+        <!-- Sidebar -->
+        <Sidebar />
+        <!-- End Sidebar -->
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,73 @@
+---
+import { getEntry } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import PageTitle from '../components/common/PageTitle.astro';
+
+import SimpleContactForm from '../components/common/SimpleContactForm.astro';
+
+
+import Prose from '@/components/common/Prose.astro';
+// Get contact page content from CMS
+const contactContent = await getEntry('pages', 'contact');
+
+if (!contactContent) {
+  throw new Error('Contact page content not found');
+}
+
+const { Content } = await contactContent.render();
+
+const pageTitle = contactContent.data.title;
+const pageDescription = contactContent.data.description;
+const pageType = contactContent.data.pageType || 'website';
+const pageImage = typeof contactContent.data.image === 'string' ? contactContent.data.image : contactContent.data.image?.src || contactContent.data.pageImage;
+const preloadedImage = contactContent.data.preloadedImage || (typeof contactContent.data.image === 'object' ? contactContent.data.image : null);
+---
+
+<Layout title={pageTitle} description={pageDescription} type={pageType} preloadedImage={preloadedImage} image={pageImage} >
+  <section class="bg-white pb-24">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <PageTitle 
+      pageTitle={pageTitle} 
+      breadcrumbTitle="Home"
+      breadcrumbURL="/"
+      />
+
+     <!-- <div class="mb-10">
+        <h3 class="mb-4 text-2xl font-heading text-darkgray-primary font-medium">
+          GET IN TOUCH
+        </h3>
+        <p class="mb-2 font-light text-darkgray-primary text-pretty max-w-xl">
+          {pageDescription}
+        </p>
+      </div>  -->
+      <div class="flex flex-wrap -mx-4">
+        <div class="w-full lg:w-2/3 px-4 mb-8 lg:mb-0">
+      <!-- CMS Content Section -->
+      <div class="max-w-3xl mb-12">
+        <Prose>
+          <Content />
+        </Prose>
+      </div>
+
+          <SimpleContactForm />
+
+        </div>
+        <div class="w-full lg:w-1/3 px-4">
+          <div class="mb-8 text-center">
+            <h4 class="mb-4 text-xl font-heading text-center">
+              EMAIL
+            </h4>
+            <a
+              class="text-red-700 hover:text-red-800 text-center underline hover:no-underline"
+              href="mailto:info@ledpac.com"
+            >
+              info@ledpac.com
+            </a>
+          </div>
+        </div>
+      </div>
+      
+
+    </div>
+  </section>
+</Layout>

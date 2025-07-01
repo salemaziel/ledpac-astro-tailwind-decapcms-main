@@ -1,0 +1,34 @@
+{
+    "main_menu": [
+        {
+            "title": "Home",
+            "url": "/",
+            "button": false
+        },
+        {
+            "title": "About",
+            "url": "/about",
+            "button": false
+        },
+        {
+            "title": "Products",
+            "url": "/products",
+            "button": false
+        },
+        {
+            "title": "Our Work",
+            "url": "/our-work",
+            "button": false
+        },
+        {
+            "title": "Contact Us",
+            "url": "/contact",
+            "button": false
+        },
+        {
+            "title": "Get An Estimate",
+            "url": "/products/#product-form",
+            "button": true
+        }
+    ]
+}

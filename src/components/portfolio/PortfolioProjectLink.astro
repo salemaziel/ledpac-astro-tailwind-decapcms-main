@@ -1,0 +1,33 @@
+---
+import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
+
+
+
+const { title, description, image, slug } = Astro.props;
+---
+
+<a
+  href={slug}
+  class="block w-full md:w-1/2 px-2 my-2 cursor-pointer group"
+>
+  <div class="overflow-hidden rounded-md shadow-xl">
+    <Image
+      class="block w-full h-56 object-cover transition-transform duration-300 group-hover:scale-105"
+      src={image}
+      alt={title}
+      width={image.width}
+      height={image.height}
+      loading="lazy"
+      decoding="async"
+      inferSize={true}
+    />
+  </div>
+  <h4 class="text-xl font-medium text-center text-darkgray-primary font-heading mt-4 mb-2 group-hover:underline text-pretty">
+    {title}
+  </h4>
+  <!--<p class="text-darkgray-primary font-light text-center">
+    {description}
+  </p>
+-->
+</a>

@@ -1,0 +1,169 @@
+---
+// src/components/__structures/IndexSectionStructures12.astro
+import { Image } from 'astro:assets';
+
+// Import banner images
+import banner1Img from '../../assets/images/banner1.png';
+import banner2Img from '../../assets/images/banner2.png';
+import banner3Img from '../../assets/images/banner3.png';
+import banner4Img from '../../assets/images/banner4.png';
+import banner5Img from '../../assets/images/banner5.png';
+import banner6Img from '../../assets/images/banner6.png';
+
+// Define props if needed
+// export interface Props {}
+// const {} = Astro.props;
+---
+
+<div class="container max-w-4xl mx-auto px-4 pt-12 pb-24">
+  <h2 class="mb-8 text-4xl text-darkgray-primary font-heading text-center">
+    LED Lighting Solutions
+  </h2>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <!-- Card 1: Motion Sensor -->
+    <div class="rounded-md overflow-hidden">
+      <Image
+        src={banner1Img}
+        alt="Abstract image representing Motion Sensor LED Lighting"
+        class="w-full rounded-md h-48 object-cover"
+        width={banner1Img.width}
+        height={banner1Img.height}
+        format="webp"
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="py-6">
+        <h4 class="mb-2 text-darkgray-primary text-2xl font-heading">
+          Motion Sensor LED Lighting
+        </h4>
+        <p class="mb-4 text-darkgray-primary font-light">
+            SMART RB LEDS attached to motion sensors inside custom
+            fixtures that follow your moment fast or slow changing colors
+            at the same time. This technology is one of our staple
+            systems, allowing many technical options for many future
+            availability's.
+        </p>
+      </div>
+    </div>
+
+    <!-- Card 2: Landscape -->
+    <div class="rounded-md overflow-hidden">
+      <Image
+        src={banner2Img}
+        alt="Abstract image representing Premium LED Landscape Solutions"
+        class="w-full rounded-md h-48 object-cover"
+        width={banner2Img.width}
+        height={banner2Img.height}
+        format="webp"
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="py-6">
+        <h4 class="mb-2 text-darkgray-primary text-2xl font-heading">
+          Premium LED Landscape Solution
+        </h4>
+        <p class="mb-4 text-darkgray-primary font-light">
+            Elegant outdoor lighting solutions that enhance your
+            landscape, providing 70% savings on electricity compared to
+            traditional systems.
+        </p>
+      </div>
+    </div>
+
+    <!-- Card 3: Illumination Projects -->
+    <div class="rounded-md overflow-hidden">
+      <Image
+        src={banner3Img}
+        alt="Abstract image representing LED Illumination Projects"
+        class="w-full rounded-md h-48 object-cover"
+        width={banner3Img.width}
+        height={banner3Img.height}
+        format="webp"
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="py-6">
+        <h4 class="mb-2 text-darkgray-primary text-2xl font-heading">
+          LED Illumination Projects
+        </h4>
+        <p class="mb-4 text-darkgray-primary font-light">
+            LEDpac's RETROfit solutions for both low and high ceiling
+            downlighting designed for entryways, hallways, stairwells,
+            kitchens, home movie theatres, studios, game rooms and more.
+        </p>
+      </div>
+    </div>
+
+    <!-- Card 4: NanoLite C.O.B. -->
+    <div class="rounded-md overflow-hidden">
+      <Image
+        src={banner4Img}
+        alt="Abstract image representing NanoLite C.O.B. Indoor LED Lighting"
+        class="w-full rounded-md h-48 object-cover"
+        width={banner4Img.width}
+        height={banner4Img.height}
+        format="webp"
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="py-6">
+        <h4 class="mb-2 text-darkgray-primary text-2xl font-heading">
+          NanoLite C.O.B. Indoor LED Lighting
+        </h4>
+        <p class="mb-4 text-darkgray-primary font-light">
+            Chip-on-Board LEDs, also known as COBs, are the next and
+            newest generation of LED technology for indoor lighting.
+        </p>
+      </div>
+    </div>
+
+    <!-- Card 5: Exterior Outdoor -->
+    <div class="rounded-md overflow-hidden">
+      <Image
+        src={banner5Img}
+        alt="Abstract image representing Exterior Outdoor LED Lighting"
+        class="w-full rounded-md h-48 object-cover"
+        width={banner5Img.width}
+        height={banner5Img.height}
+        format="webp"
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="py-6">
+        <h4 class="mb-2 text-darkgray-primary text-2xl font-heading">
+          Exterior Outdoor LED Lighting
+        </h4>
+        <p class="mb-4 text-darkgray-primary font-light">
+            Premium low-voltage high-lumen LED solutions for submersible
+            and above grade outdoor landscape applications such as:
+            fountains, ponds, reflecting pools, outdoor step-lighting,
+            patio bar counters, exterior architectural features and more.
+        </p>
+      </div>
+    </div>
+
+    <!-- Card 6: Interior Illumination -->
+    <div class="rounded-md overflow-hidden">
+       <Image
+        src={banner6Img}
+        alt="Abstract image representing Interior LED Illumination"
+        class="w-full rounded-md h-48 object-cover"
+        width={banner6Img.width}
+        height={banner6Img.height}
+        format="webp"
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="py-6">
+        <h4 class="mb-2 text-darkgray-primary text-2xl font-heading">
+          Interior LED Illumination
+        </h4>
+        <p class="mb-4 text-darkgray-primary font-light">
+            LEDpac's Linear and Flexible solutions give premium
+            long-living light to architectural features, soffits, step
+            lighting, bar counters, built-in cabinetry, and more.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

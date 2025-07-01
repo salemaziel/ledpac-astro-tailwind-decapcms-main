@@ -1,0 +1,61 @@
+---
+import { Image } from 'astro:assets';
+import Layout from './Layout.astro';
+import PageTitle from '../components/common/PageTitle.astro';
+
+import bgImage from '../assets/pstls-assets/images/blog-content/shadow-pink.png';
+import Sidebar from '../components/common/Sidebar.astro';
+import Prose from '../components/common/Prose.astro';
+
+const { title, description, image, pageImage, pageType } = Astro.props;
+const { Content } = await Astro.props.render();
+
+// Handle image properly for SEO
+const seoImage = typeof image === 'string' ? image : image?.src || pageImage;
+const seoPreloadedImage = typeof image === 'object' ? image : null;
+---
+
+<Layout
+  title={title}
+  description={description}
+  preloadedImage={seoPreloadedImage}
+  image={seoImage}
+  type={pageType}
+>
+<section
+    class="pb-24 mx-auto"
+    style={`background-image: url(${bgImage.src}); background-repeat: no-repeat; background-size: cover;`}
+>
+    <div class="container px-4 mx-auto max-w-6xl">
+        <PageTitle 
+        pageTitle={title}
+        breadcrumbTitle="Our Work"
+        breadcrumbURL="our-work"
+        />
+        
+        <div class="flex flex-wrap -mx-4">
+        <!-- Main Content -->
+        <div class="w-full lg:w-2/3 px-4 mb-12 lg:mb-0">
+            <div class="flex flex-wrap mx-auto mb-8">
+            <Image
+                src={image}
+                alt={title}
+                class="w-full object-cover rounded-md mb-12 h-auto block"
+                decoding="async"
+                width={image.width}
+                height={image.height}
+                loading="lazy"
+                format="webp"
+                inferSize={true}
+            />
+            <Prose>
+                <Content />
+            </Prose>
+            </div>
+        </div>
+    
+        <Sidebar />
+        </div>
+
+  <Content />
+</Layout>
