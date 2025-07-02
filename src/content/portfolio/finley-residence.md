@@ -2,10 +2,8 @@
 title: "Finley Residence"
 description: "LEDpac was invited to help solve the challenge of backlighting a solid onyx countertop for a new home project. The challenge for LEDpac was to develop a way to reliably light the countertop at the Malaga, the new home development project for the Finley family in northern San Diego County."
 slug: "finley-residence"
-publishDate: 2023-01-01T00:00:00.000Z
 isDraft: false
 image: "https://res.cloudinary.com/dexdumfqy/image/upload/f_auto/ledpac/portfolio/finley-8_kxikbv.jpg"
-pageImage: "https://res.cloudinary.com/dexdumfqy/image/upload/f_auto/ledpac/portfolio/finley-8_kxikbv.jpg"
 pageType: "article"
 ---
 

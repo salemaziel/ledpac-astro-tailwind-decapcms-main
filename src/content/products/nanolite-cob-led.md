@@ -2,10 +2,8 @@
 title: "NanoLite C.O.B. LEDs"
 description: "Chip-on-Board LEDs, also known as COBs, are the next and newest generation of LED lighting technology."
 slug: "nanolite-cob-led"
-publishDate: 2023-01-01T00:00:00.000Z
 isDraft: false
 image: "https://res.cloudinary.com/dexdumfqy/image/upload/f_auto/ledpac/products/cob-lighting_e84cym.png"
-pageImage: "https://res.cloudinary.com/dexdumfqy/image/upload/f_auto/ledpac/products/cob-lighting_e84cym.png"
 pageType: "product"
 ---
 

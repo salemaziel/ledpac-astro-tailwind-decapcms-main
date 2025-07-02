@@ -1,11 +1,6 @@
 {
     "main_menu": [
         {
-            "title": "Home",
-            "url": "/",
-            "button": false
-        },
-        {
             "title": "About",
             "url": "/about",
             "button": false

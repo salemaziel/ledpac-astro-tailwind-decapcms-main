@@ -2,10 +2,7 @@
 title: "LED Products"
 description: "Innovative LED lighting products for various applications that combine efficiency, design, and functionality."
 slug: "products"
-publishDate: 2023-01-01T00:00:00.000Z
-isDraft: false
 image: "https://res.cloudinary.com/dexdumfqy/image/upload/f_auto/ledpac/logo-light-shadow-600x222_ajfevb.png"
-pageImage: "https://res.cloudinary.com/dexdumfqy/image/upload/f_auto/ledpac/logo-light-shadow-600x222_ajfevb.png"
 pageType: "website"
 ---
 

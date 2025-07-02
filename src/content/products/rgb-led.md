@@ -2,7 +2,6 @@
 title: "RGB LED Industrial Grow Lights"
 description: "LEDpac's High-Output LED COB LED RBi GROWLIGHTS solutions for both commercial and residential gardening."
 slug: "rgb-led"
-publishDate: 2023-01-01T00:00:00.000Z
 isDraft: false
 image: "https://res.cloudinary.com/dexdumfqy/image/upload/f_auto/ledpac/products/spider-cob-led-growlights-png-1744334845303_f7swxo.webp"
 pageImage: "https://res.cloudinary.com/dexdumfqy/image/upload/f_auto/ledpac/products/spider-cob-led-growlights-png-1744334845303_f7swxo.webp"

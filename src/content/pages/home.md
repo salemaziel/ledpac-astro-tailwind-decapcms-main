@@ -1,9 +1,6 @@
 ---
 title: "LEDPac LLC | Lighting Solutions for San Diego"
 description: "Transform your space with cutting-edge LED lighting that's brighter, smarter, and built to last. LEDPac delivers innovation and sustainability in every design, helping you shine while saving energy."
-slug: "home"
-publishDate: 2023-01-01T00:00:00.000Z
-isDraft: false
 image: "https://res.cloudinary.com/dexdumfqy/image/upload/f_auto/ledpac/logo-light-shadow-600x222_ajfevb.png"
 pageImage: "https://res.cloudinary.com/dexdumfqy/image/upload/f_auto/ledpac/logo-light-shadow-600x222_ajfevb.png"
 pageType: "website"
@@ -44,7 +41,7 @@ featuresSection:
       reverseLayout: false
 
 solutionsSection:
-    solutions-h2-title: "LED Lighting Solutions"
+    solutions-h3-title: "LED Lighting Solutions"
     solutions-paragraph: "LEDPac delivers innovation and sustainability in every design, helping you shine while saving energy. Explore our range of LED lighting solutions tailored for residential, commercial, and industrial applications."
     solutionsCards:
     - title: "Motion Sensor LED Lighting"
@@ -73,38 +70,3 @@ solutionsSection:
       imageAlt: 'Interior LED Illumination'
 
 ---
-
-
-## Pioneering the Next Generation of LED Technology
-
-### Solar Powered LED
-
-High Powered solar LED illumination breakthrough with bright reliable adjustable illumination, powered by the sun. Lighting the darkness through the night using super-efficient white LEDs.
-
-### Industrial LED Grow Lights
-
-Industrial LED Grow light systems, allowing the best color spectrum closest to the sun. Plants grow stronger faster night and day indoors.
-
-### NANOlite COB LED Lights
-
-COB Innovation in linear LED lighting, NANOlite. Continuous, bright, reliable LED illumination through entire product. Pure white or warm white with continuous illumination LED technology.
-
-## Welcome to LEDPac LLC
-
-San Diego County's premier distributor of cutting-edge LED technology. We specialize in Solar Powered, RGB, and Chip-on-Board LED lighting solutions for residential, commercial, and industrial applications.
-
-## Our Mission
-
-To provide superior quality LED solutions that are consistently the discriminating choice of homeowners, business owners, contractors, lighting designers, and architects throughout San Diego County.
-
-## Why Choose LEDPac?
-
-- 20+ years of experience in LED technology
-- Cutting-edge solutions for all applications
-- Expert installation and support
-- Local San Diego County presence
-- Comprehensive warranty coverage
-
-## Get Started Today
-
-Ready to transform your space with premium LED lighting? [Get an estimate](/contact) and discover how our innovative solutions can brighten your world while saving energy and reducing costs.

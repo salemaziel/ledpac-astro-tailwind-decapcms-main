@@ -17,7 +17,7 @@ const NavLink = ({ title, url, isLast, isActive }) => (
 );
 
 
-function GlobalNavigation({ logo, currentPath = "/" }) {
+function GlobalNavigation({ logo, currentPath }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -57,11 +57,12 @@ function GlobalNavigation({ logo, currentPath = "/" }) {
                 <a className="inline-block" href="/">
                   <img
                     src={logo.src}
-                    alt='LEDPac Logo'
+                    alt='LEDPac Logo, link to homepage'
                     width={logo.width}
                     height={logo.height}
                     format={logo.format}
                     loading="eager"
+                    
                     
                   />
                 </a>
@@ -98,6 +99,7 @@ function GlobalNavigation({ logo, currentPath = "/" }) {
                           url={item.url}
                           isLast={index === navItems.main_menu.length - 1}
                           isActive={currentPath === item.url}
+                          
                         />
                       ))}
                   </ul>

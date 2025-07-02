@@ -2,7 +2,6 @@
 title: "Solar Powered LED Lights"
 description: "Revolutionary solar LED lighting solutions using super-efficient white LEDs for reliable, eco-friendly illumination."
 slug: "solar-led"
-publishDate: 2023-01-01T00:00:00.000Z
 isDraft: false
 image: "https://res.cloudinary.com/dexdumfqy/image/upload/f_auto/ledpac/products/solar-night-light_qvvfgr.jpg"
 pageImage: "https://res.cloudinary.com/dexdumfqy/image/upload/f_auto/ledpac/products/solar-night-light_qvvfgr.jpg"

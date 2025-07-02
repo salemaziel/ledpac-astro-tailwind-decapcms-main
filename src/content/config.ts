@@ -10,11 +10,10 @@ const products = defineCollection({
         title: z.string(),
         description: z.string(),
         slug: z.string().optional(),
-        publishDate: z.date().optional(),
         isDraft: z.boolean().default(false),
         image: z.union([image(), z.string()]).optional(), // Allow both processed images and string URLs
         pageImage: z.string().optional(), // Optional page image field
-        componentName: z.string().optional(),
+        //componentName: z.string().optional(),
         pageType: z.enum(['product', 'article']).default('product'),
   }),
 });
@@ -27,11 +26,10 @@ const portfolio = defineCollection({
     title: z.string(),
     description: z.string(),
     slug: z.string().optional(),
-    publishDate: z.date().optional(),
     isDraft: z.boolean().default(false),
     image: z.union([image(), z.string()]).optional(), // Allow both processed images and string URLs
     pageImage: z.string().optional(), // Optional page image field
-    componentName: z.string().optional(),
+    //componentName: z.string().optional(),
     pageType: z.enum(['article', 'portfolio']).default('article'),
   }),
 });
@@ -42,12 +40,9 @@ const pages = defineCollection({
     z.object({ 
     title: z.string(),
     description: z.string(),
-    slug: z.string().optional(),
-    publishDate: z.date().optional(),
-    isDraft: z.boolean().default(false),
     image: z.union([image(), z.string()]).optional(), // Allow both processed images and string URLs
     pageImage: z.string().optional(), // Optional page image field
-    componentName: z.string().optional(),
+    //componentName: z.string().optional(),
     pageType: z.string().optional(),
     heroSection: z.object({
       'hero-h1-title': z.string().optional(),

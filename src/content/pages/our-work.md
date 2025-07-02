@@ -2,10 +2,7 @@
 title: "Our Work"
 description: "In the rapidly advancing world of SSL technology, LEDpac leads the way with superior quality LED solutions. Whether it's retrofit, new construction, residential, commercial, or industrial, interior or exterior, big or small, LEDpac's suite of SSL solutions is consistently the discriminating choice of homeowners, business owners, contractors, lighting designers and architects – and has been for 10 years."
 slug: "our-work"
-publishDate: 2023-01-01T00:00:00.000Z
-isDraft: false
 image: "https://res.cloudinary.com/dexdumfqy/image/upload/f_auto/ledpac/logo-light-shadow-600x222_ajfevb.png"
-pageImage: "https://res.cloudinary.com/dexdumfqy/image/upload/f_auto/ledpac/logo-light-shadow-600x222_ajfevb.png"
 pageType: "website"
 ---
 

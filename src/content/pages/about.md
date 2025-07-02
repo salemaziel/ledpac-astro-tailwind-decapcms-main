@@ -2,10 +2,7 @@
 title: "About LEDPac"
 description: "San Diego County Distributor of Cutting Edge LED Technology including Solar Powered, RGB, and ChipOnBoard LED Lights"
 slug: "about"
-publishDate: 2023-01-01T00:00:00.000Z
-isDraft: false
 image: "https://res.cloudinary.com/dexdumfqy/image/upload/f_auto/ledpac/logo-light-shadow-600x222_ajfevb.png"
-pageImage: "https://res.cloudinary.com/dexdumfqy/image/upload/f_auto/ledpac/logo-light-shadow-600x222_ajfevb.png"
 pageType: "website"
 ---
 

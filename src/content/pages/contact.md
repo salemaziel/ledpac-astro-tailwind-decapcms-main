@@ -2,10 +2,7 @@
 title: "Contact Us"
 description: "To get in touch with us for an estimate or any other reason, please fill out the form below and we will contact you shortly."
 slug: "contact"
-publishDate: 2023-01-01T00:00:00.000Z
-isDraft: false
 image: "https://res.cloudinary.com/dexdumfqy/image/upload/f_auto/ledpac/logo-light-shadow-600x222_ajfevb.png"
-pageImage: "https://res.cloudinary.com/dexdumfqy/image/upload/f_auto/ledpac/logo-light-shadow-600x222_ajfevb.png"
 pageType: "website"
 ---
 ## Ready to Transform Your Space?

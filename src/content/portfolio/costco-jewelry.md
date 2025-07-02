@@ -2,7 +2,6 @@
 title: "Costco Jewelry: Case Study"
 description: "LED lighting by LEDpac was installed in the typical jewelry case in a test store in Irvine, California. An independent study was done on the Costco Jewelry Case LED lighting for informative purposes by an independent lighting designer."
 slug: "costco-jewelry"
-publishDate: 2023-01-01T00:00:00.000Z
 isDraft: false
 image: "https://res.cloudinary.com/dexdumfqy/image/upload/f_auto/ledpac/portfolio/costco-after-550x332_macmdz.jpg"
 pageImage: "https://ledpac.com/images/costco-after-550x332.jpg"

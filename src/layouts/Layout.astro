@@ -146,8 +146,8 @@ import '@fontsource-variable/open-sans';
     <!-- Screen reader skip main nav -->
    <!--  <a class="skip" aria-label="skip to main content" href="#main">Click To Skip To Main Content</a> -->
 
-    <GlobalNavigation logo={optimizedLogo} client:idle />
-    
+    <GlobalNavigation logo={optimizedLogo} currentPath={Astro.url.pathname} client:idle />
+
     <!-- Main content area -->
     <main id="main" class="">
       <slot />
