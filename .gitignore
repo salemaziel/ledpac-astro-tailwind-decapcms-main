@@ -42,5 +42,9 @@ extras/
 *.bak
 *.backup
 
+# Stackbit Visual Editor
+.stackbit/
+.stackbit-cache/
+
 
 
