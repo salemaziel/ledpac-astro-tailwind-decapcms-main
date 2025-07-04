@@ -602,7 +602,7 @@ collections:
             name: "body"
             widget: "markdown"
             required: false
-            hint: "Main Contact Page content"
+            hidden: true
 
       - label: "Products Landing Page"
         name: "products"

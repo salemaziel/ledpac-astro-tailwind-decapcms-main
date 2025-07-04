@@ -62,7 +62,7 @@ function GlobalNavigation({ logo, currentPath }) {
                     height={logo.height}
                     format={logo.format}
                     loading="eager"
-                    
+                    decoding="async"
                     
                   />
                 </a>
@@ -135,6 +135,7 @@ function GlobalNavigation({ logo, currentPath }) {
                     height={logo.height}
                     format={logo.format}
                     loading="eager"
+                    decoding="async"
                   />
                 </a>
                 <button
